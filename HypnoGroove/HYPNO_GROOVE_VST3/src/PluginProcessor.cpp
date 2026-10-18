@@ -246,7 +246,7 @@ void HypnoGrooveAudioProcessor::setStateInformation(const void* data, int size) 
 }
 
 juce::AudioProcessorEditor* HypnoGrooveAudioProcessor::createEditor() {
-    return new HypnoGrooveAudioProcessorEditor(*this);
+    return new juce::GenericAudioProcessorEditor(*this);
 }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter() {
