@@ -1,0 +1,34 @@
+HYPNO GROOVE - YOUR HOUSE DRUM MACHINE FOR FL STUDIO
+===================================================
+
+THIS IS THE SOURCE PROJECT, NOT YET A COMPILED .VST3.
+
+Included:
+  - A 6-drum-channel / 16-step sequencer instrument
+  - Two independent patterns, A and B
+  - Six factory sounds (works without sample downloads)
+  - Your own WAV/AIFF sample loading
+  - Swing, Humanize, Hit Probability, individual levels
+  - FL Studio transport/tempo sync
+  - A Windows build workflow
+
+HOW TO GET THE WINDOWS VST3 (EASY / NO CODING)
+
+1. Create a new private repository on github.com.
+2. Upload all project contents, including the .github folder.
+3. Open the Actions tab; run "Build HYPNO GROOVE for Windows".
+4. Download the HYPNO-GROOVE-Windows-VST3 artifact when the build succeeds.
+5. Extract the folder called HYPNO GROOVE.vst3.
+6. Copy the whole folder to:
+       C:\Program Files\Common Files\VST3\
+7. Open FL Studio > Options > Manage plugins > Find installed plugins.
+8. Add HYPNO GROOVE as an instrument, press play at 124 BPM.
+
+ALTERNATIVE: If you installed Visual Studio 2022 with C++ tools and Git,
+just double-click BUILD_WINDOWS.bat (requires internet on first build).
+
+Detailed help: README.md
+Sample of the factory sound: HYPNO_GROOVE_preview.wav (separate download)
+
+Status: The independent audio/sequencer engine has passed local tests.
+The full JUCE/VST3 plugin must still be compiled and tested on Windows.
