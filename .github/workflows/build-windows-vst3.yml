@@ -1,0 +1,36 @@
+
+name: Build HYPNO GROOVE for Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build-vst3:
+    runs-on: windows-2022
+
+    steps:
+      - name: Download project
+        uses: actions/checkout@v4
+
+      - name: Configure VST3 build
+        run: cmake -S HypnoGroove/HYPNO_GROOVE_VST3 -B build -G "Visual Studio 17 2022" -A x64
+
+      - name: Compile HYPNO GROOVE
+        run: cmake --build build --config Release --parallel 4
+
+      - name: Collect VST3
+        shell: pwsh
+        run: |
+          $plugin = Get-ChildItem -Path build -Directory -Filter "*.vst3" -Recurse | Select-Object -First 1
+          if (-not $plugin) { throw "VST3 plugin not found" }
+          New-Item -ItemType Directory -Path dist -Force | Out-Null
+          Copy-Item -LiteralPath $plugin.FullName -Destination dist -Recurse
+
+      - name: Upload compiled plugin
+        uses: actions/upload-artifact@v4
+        with:
+          name: HYPNO-GROOVE-Windows-VST3
+          path: dist/
+          if-no-files-found: error
